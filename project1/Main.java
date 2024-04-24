@@ -17,121 +17,64 @@ public class Main {
     private static DecimalFormat df = new DecimalFormat("0.00");
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(Main::createAndShowGUI);
-    }
+        Scanner scanner = new Scanner(System.in);
+        String input;
+        boolean continueProgram = true;
 
-    private static void createAndShowGUI() {
-        // Create the main window (a JFrame)
-        JFrame frame = new JFrame("Shapes GUI");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLayout(new GridLayout(0, 2, 10, 10));
+        while (continueProgram) {
+            System.out.println("********* Welcome to the Java OO Shapes Program **********");
+            System.out.println("Select from the menu below:");
+            System.out.println("1. Construct a Circle");
+            System.out.println("2. Construct a Rectangle");
+            System.out.println("3. Construct a Square");
+            System.out.println("4. Construct a Triangle");
+            System.out.println("5. Construct a Sphere");
+            System.out.println("6. Construct a Cube");
+            System.out.println("7. Construct a Cone");
+            System.out.println("8. Construct a Cylinder");
+            System.out.println("9. Construct a Torus");
+            System.out.println("10. Exit the program");
 
-        // Create a panel for inputs
-        JPanel inputPanel = new JPanel();
-        inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.Y_AXIS));
-        frame.add(inputPanel);
+            input = scanner.nextLine();
+            int choice = Integer.parseInt(input);
 
-        // Create a panel for results
-        JTextArea resultArea = new JTextArea(20, 30);
-        resultArea.setEditable(false);
-        JScrollPane resultScrollPane = new JScrollPane(resultArea);
-        frame.add(resultScrollPane);
-
-        // Add a combo box for shape selection
-        String[] shapes = {"Circle", "Rectangle", "Square", "Triangle", "Sphere", "Cube", "Cone", "Cylinder", "Torus"};
-        JComboBox<String> shapeComboBox = new JComboBox<>(shapes);
-        inputPanel.add(shapeComboBox);
-
-        // Add input fields
-        JTextField inputField1 = new JTextField(10);
-        JTextField inputField2 = new JTextField(10);
-        inputPanel.add(new JLabel("Dimension 1:"));
-        inputPanel.add(inputField1);
-        inputPanel.add(new JLabel("Dimension 2:"));
-        inputPanel.add(inputField2);
-        
-        // Add a button to calculate
-        JButton calculateButton = new JButton("Calculate");
-        inputPanel.add(calculateButton);
-
-        // Add action listener for the calculate button
-        calculateButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String selectedShape = (String) shapeComboBox.getSelectedItem();
-                try {
-                    double dimension1 = Double.parseDouble(inputField1.getText());
-                    double dimension2 = inputField2.isVisible() ? Double.parseDouble(inputField2.getText()) : 0;
-                    String result = calculateShape(selectedShape, dimension1, dimension2);
-                    resultArea.setText(result);
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(frame, "Please enter valid numbers for dimensions.", "Input Error", JOptionPane.ERROR_MESSAGE);
-                }
+            switch (choice) {
+                case 1:
+                    // Code for constructing a Circle
+                    break;
+                case 2:
+                    // Code for constructing a Rectangle
+                    break;
+                case 3:
+                    // Code for constructing a Square
+                    break;
+                case 4:
+                    // Code for constructing a Triangle
+                    break;
+                case 5:
+                    // Code for constructing a Sphere
+                    break;
+                case 6:
+                    // Code for constructing a Cube
+                    break;
+                case 7:
+                    // Code for constructing a Cone
+                    break;
+                case 8:
+                    // Code for constructing a Cylinder
+                    break;
+                case 9:
+                    // Code for constructing a Torus
+                    break;
+                case 10:
+                    System.out.println("Thanks for using the program. Today is " + java.time.LocalDate.now() + " at " + java.time.LocalTime.now());
+                    continueProgram = false;
+                    break;
+                default:
+                    System.out.println("Invalid option, please try again.");
             }
-        });
-
-        // Update input fields based on shape selection
-        shapeComboBox.addActionListener(e -> {
-            String selectedShape = (String) shapeComboBox.getSelectedItem();
-            if ("Sphere".equals(selectedShape) || "Cube".equals(selectedShape)) {
-                inputField2.setVisible(false);
-            } else {
-                inputField2.setVisible(true);
-            }
-            frame.pack();
-        });
-
-        // Pack the frame and make it visible
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
+        }
+        scanner.close();
     }
-
-    // Method to calculate shape based on selection and dimensions
-private static String calculateShape(String selectedShape, double dimension1, double dimension2) {
-    Shape shape; // General shape reference for creating instances
-    String result; // To store the result of area or volume calculation
-    switch (selectedShape) {
-        case "Circle":
-            shape = new Circle(dimension1);
-            result = "Area: " + df.format(((TwoDimensionalShape)shape).area());
-            break;
-        case "Rectangle":
-            shape = new Rectangle(dimension1, dimension2);
-            result = "Area: " + df.format(((TwoDimensionalShape)shape).area());
-            break;
-        case "Square":
-            shape = new Square(dimension1);
-            result = "Area: " + df.format(((TwoDimensionalShape)shape).area());
-            break;
-        case "Triangle":
-            shape = new Triangle(dimension1, dimension2);
-            result = "Area: " + df.format(((TwoDimensionalShape)shape).area());
-            break;
-        case "Sphere":
-            shape = new Sphere(dimension1);
-            result = "Volume: " + df.format(((ThreeDimensionalShape)shape).volume());
-            break;
-        case "Cube":
-            shape = new Cube(dimension1);
-            result = "Volume: " + df.format(((ThreeDimensionalShape)shape).volume());
-            break;
-        case "Cone":
-            shape = new Cone(dimension1, dimension2);
-            result = "Volume: " + df.format(((ThreeDimensionalShape)shape).volume());
-            break;
-        case "Cylinder":
-            shape = new Cylinder(dimension1, dimension2);
-            result = "Volume: " + df.format(((ThreeDimensionalShape)shape).volume());
-            break;
-        case "Torus":
-            shape = new Torus(dimension1, dimension2);
-            result = "Volume: " + df.format(((ThreeDimensionalShape)shape).volume());
-            break;
-        default:
-            result = "Unknown shape";
-    }
-    return result;
-}
     }
 }

@@ -88,38 +88,50 @@ public class Main {
     }
 
     // Method to calculate shape based on selection and dimensions
-    private static String calculateShape(String selectedShape, double dimension1, double dimension2) {
-        Shape shape;
-        switch (selectedShape) {
-            case "Circle":
-                shape = new Circle(dimension1);
-                return "Area: " + df.format(shape.area());
-            case "Rectangle":
-                shape = new Rectangle(dimension1, dimension2);
-                return "Area: " + df.format(shape.area());
-            case "Square":
-                shape = new Square(dimension1);
-                return "Area: " + df.format(shape.area());
-            case "Triangle":
-                shape = new Triangle(dimension1, dimension2);
-                return "Area: " + df.format(shape.area());
-            case "Sphere":
-                shape = new Sphere(dimension1);
-                return "Volume: " + df.format(shape.volume());
-            case "Cube":
-                shape = new Cube(dimension1);
-                return "Volume: " + df.format(shape.volume());
-            case "Cone":
-                shape = new Cone(dimension1, dimension2);
-                return "Volume: " + df.format(shape.volume());
-            case "Cylinder":
-                shape = new Cylinder(dimension1, dimension2);
-                return "Volume: " + df.format(shape.volume());
-            case "Torus":
-                shape = new Torus(dimension1, dimension2);
-                return "Volume: " + df.format(shape.volume());
-            default:
-                return "Unknown shape";
-        }
+private static String calculateShape(String selectedShape, double dimension1, double dimension2) {
+    Shape shape; // General shape reference for creating instances
+    String result; // To store the result of area or volume calculation
+    switch (selectedShape) {
+        case "Circle":
+            shape = new Circle(dimension1);
+            result = "Area: " + df.format(((TwoDimensionalShape)shape).area());
+            break;
+        case "Rectangle":
+            shape = new Rectangle(dimension1, dimension2);
+            result = "Area: " + df.format(((TwoDimensionalShape)shape).area());
+            break;
+        case "Square":
+            shape = new Square(dimension1);
+            result = "Area: " + df.format(((TwoDimensionalShape)shape).area());
+            break;
+        case "Triangle":
+            shape = new Triangle(dimension1, dimension2);
+            result = "Area: " + df.format(((TwoDimensionalShape)shape).area());
+            break;
+        case "Sphere":
+            shape = new Sphere(dimension1);
+            result = "Volume: " + df.format(((ThreeDimensionalShape)shape).volume());
+            break;
+        case "Cube":
+            shape = new Cube(dimension1);
+            result = "Volume: " + df.format(((ThreeDimensionalShape)shape).volume());
+            break;
+        case "Cone":
+            shape = new Cone(dimension1, dimension2);
+            result = "Volume: " + df.format(((ThreeDimensionalShape)shape).volume());
+            break;
+        case "Cylinder":
+            shape = new Cylinder(dimension1, dimension2);
+            result = "Volume: " + df.format(((ThreeDimensionalShape)shape).volume());
+            break;
+        case "Torus":
+            shape = new Torus(dimension1, dimension2);
+            result = "Volume: " + df.format(((ThreeDimensionalShape)shape).volume());
+            break;
+        default:
+            result = "Unknown shape";
+    }
+    return result;
+}
     }
 }

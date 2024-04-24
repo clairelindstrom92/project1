@@ -1,24 +1,22 @@
 package project1;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.Scanner;
 import java.text.DecimalFormat;
 
 /**
  * CMSC 335 Project 1
  * Name: Claire Lindstrom
  * Date:
- * Description: Main class for the Shapes project with a GUI for interaction.
+ * Description: Main class for the Shapes project with a CLI for interaction.
  */
 public class Main {
-    
+
     private static DecimalFormat df = new DecimalFormat("0.00");
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int choice = 0;
+
         while (choice != 10) {
             System.out.println("\n********* Welcome to the Java OO Shapes Program **********");
             System.out.println("Select from the menu below:");
@@ -75,3 +73,7 @@ public class Main {
         }
         scanner.close();
     }
+
+    // Further methods for shape construction and calculation
+}
+

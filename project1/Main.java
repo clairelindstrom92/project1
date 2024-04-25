@@ -16,6 +16,10 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int choice = 0;
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int choice = 0;
+        double dimension1, dimension2;
 
         while (choice != 10) {
             System.out.println("\n********* Welcome to the Java OO Shapes Program **********");
@@ -35,32 +39,24 @@ public class Main {
                 choice = Integer.parseInt(scanner.nextLine());
                 switch (choice) {
                     case 1:
-                        // Implementation for constructing a Circle
+                        System.out.println("You have selected a Circle");
+                        System.out.print("Enter the radius: ");
+                        dimension1 = scanner.nextDouble();
+                        scanner.nextLine(); // Consume newline
+                        Circle circle = new Circle(dimension1);
+                        System.out.println("The area of the Circle is " + df.format(circle.area()));
                         break;
                     case 2:
-                        // Implementation for constructing a Rectangle
+                        System.out.println("You have selected a Rectangle");
+                        System.out.print("Enter the length: ");
+                        dimension1 = scanner.nextDouble();
+                        System.out.print("Enter the width: ");
+                        dimension2 = scanner.nextDouble();
+                        scanner.nextLine(); // Consume newline
+                        Rectangle rectangle = new Rectangle(dimension1, dimension2);
+                        System.out.println("The area of the Rectangle is " + df.format(rectangle.area()));
                         break;
-                    case 3:
-                        // Implementation for constructing a Square
-                        break;
-                    case 4:
-                        // Implementation for constructing a Triangle
-                        break;
-                    case 5:
-                        // Implementation for constructing a Sphere
-                        break;
-                    case 6:
-                        // Implementation for constructing a Cube
-                        break;
-                    case 7:
-                        // Implementation for constructing a Cone
-                        break;
-                    case 8:
-                        // Implementation for constructing a Cylinder
-                        break;
-                    case 9:
-                        // Implementation for constructing a Torus
-                        break;
+                    // ... Implementations for other shapes
                     case 10:
                         System.out.println("Thanks for using the program. Today is " + java.time.LocalDate.now() + " at " + java.time.LocalTime.now());
                         break;
@@ -73,7 +69,6 @@ public class Main {
         }
         scanner.close();
     }
-
     // Further methods for shape construction and calculation
 }
 
